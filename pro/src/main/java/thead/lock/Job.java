@@ -7,7 +7,6 @@ public class Job implements Runnable {
 		this.printQueue = printQueue;
 	}
 
-	@Override
 	public void run() {
 		System.out.printf("%s: Going to print a document\n", Thread
 				.currentThread().getName());
