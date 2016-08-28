@@ -14,10 +14,14 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/task
        http://www.springframework.org/schema/task/spring-task.xsd">
+       
+    
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+	<bean id="objService" class="aop.impl.ObjServiceImpl"></bean>
+	<bean class="spring.aop.SimpleAspect"></bean>
 
-	<bean id="beforeAd" class="aop.BeforeAd"></bean>
+	<!-- <bean id="beforeAd" class="aop.BeforeAd"></bean>
 	<bean id="afterAd" class="aop.AfterAd"></bean>
-	<bean id="objService" class="aop.ObjService"></bean>
 
 	<bean
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
@@ -32,7 +36,7 @@
 				<value>afterAd</value>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 
 </beans>
 

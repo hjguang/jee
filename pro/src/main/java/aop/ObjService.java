@@ -1,8 +1,6 @@
 package aop;
 
-public class ObjService {
+public interface ObjService {
 
-	public void say() {
-		System.out.println("service ......................");
-	}
+	public void say();
 }
