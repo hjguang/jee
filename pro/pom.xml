@@ -3,12 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>the</groupId>
 	<artifactId>pro</artifactId>
-	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pro Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<packaging>jar</packaging>
+	<name>pro Maven</name>
 	<properties>
-		<spring-version>5.0.0.BUILD-SNAPSHOT</spring-version>
+		 <spring-version>4.2.6.RELEASE</spring-version> 
+		<!--
+		<spring-version>5.0.0.M1</spring-version>
+		-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,7 +37,7 @@
 			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.aspectj</groupId>
+			<groupId>org.aspectj</groupId> 
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.9</version>
 		</dependency>
@@ -55,6 +57,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
@@ -66,11 +69,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			  <groupId>org.apache.curator</groupId>
+			  <artifactId>curator-framework</artifactId>
+			  <version>2.4.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
+			<version>14.0.1</version> 
 		</dependency>
 		<dependency>
 			<groupId>io.netty</groupId>
@@ -80,14 +88,14 @@
 	</dependencies>
 	<repositories>
 		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/libs-snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	        <id>spring-milestones</id>
+	        <name>Spring Milestones</name>
+	        <url>https://repo.spring.io/libs-milestone</url>
+	        <snapshots>
+	            <enabled>false</enabled>
+	        </snapshots>
+	    </repository>
+	</repositories> 
 	<build>
 		<finalName>pro</finalName>
 	</build>
