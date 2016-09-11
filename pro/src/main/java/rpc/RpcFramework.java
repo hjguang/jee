@@ -27,7 +27,7 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
-class TcpServerHandler extends ChannelHandlerAdapter {
+class TcpServerHandler extends ChannelInboundHandlerAdapter {
 
     private Object obj;
     private Object response;
@@ -63,7 +63,7 @@ class TcpServerHandler extends ChannelHandlerAdapter {
 }
 
 /**
- * 客户端处理
+ * 瀹㈡埛绔鐞�
  * 
  * @author hadoop
  *
@@ -78,7 +78,7 @@ class TcpClientHander extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         response = msg;
-        System.out.println("client接收到服务器返回的消息:" + msg);
+        System.out.println("client鎺ユ敹鍒版湇鍔″櫒杩斿洖鐨勬秷鎭�:" + msg);
     }
 
     @Override
@@ -90,23 +90,23 @@ class TcpClientHander extends ChannelInboundHandlerAdapter {
 public class RpcFramework {
 
     /**
-     * 服务注册
+     * 鏈嶅姟娉ㄥ唽
      * 
      * @param obj
-     *            需要注册的服务对象
+     *            闇�瑕佹敞鍐岀殑鏈嶅姟瀵硅薄
      * @param port
-     *            端口
+     *            绔彛
      * @param ip
-     *            地址
+     *            鍦板潃
      * @throws InterruptedException
      */
     public static void regist(final Object obj, int port, String ip) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         if (obj == null)
-            throw new IllegalArgumentException("对象不能为null");
+            throw new IllegalArgumentException("瀵硅薄涓嶈兘涓簄ull");
         if (port <= 0 || port > 65535)
-            throw new IllegalArgumentException("错误的端口" + port);
+            throw new IllegalArgumentException("閿欒鐨勭鍙�" + port);
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(bossGroup, workerGroup);
         bootstrap.channel(NioServerSocketChannel.class);
@@ -132,13 +132,13 @@ public class RpcFramework {
     @SuppressWarnings("unchecked")
     public static <T> T getObj(Class<T> interfaceClass, final String host, final int port) {
         if (interfaceClass == null)
-            throw new IllegalArgumentException("接口类型不能为空");
+            throw new IllegalArgumentException("鎺ュ彛绫诲瀷涓嶈兘涓虹┖");
         if (!interfaceClass.isInterface())
-            throw new IllegalArgumentException("类名" + interfaceClass.getName() + "必须是接口");
+            throw new IllegalArgumentException("绫诲悕" + interfaceClass.getName() + "蹇呴』鏄帴鍙�");
         if (host == null || host.length() == 0)
-            throw new IllegalArgumentException("目标主机不能为空");
+            throw new IllegalArgumentException("鐩爣涓绘満涓嶈兘涓虹┖");
         if (port <= 0 || port > 65535)
-            throw new IllegalArgumentException("端口错误：" + port);
+            throw new IllegalArgumentException("绔彛閿欒锛�" + port);
 
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[] { interfaceClass },
                 new InvocationHandler() {
