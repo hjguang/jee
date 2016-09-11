@@ -35,7 +35,6 @@ class TcpServerHandler extends ChannelInboundHandlerAdapter {
     public TcpServerHandler(Object obj) {
         super();
         this.obj = obj;
-
     }
 
     @Override
